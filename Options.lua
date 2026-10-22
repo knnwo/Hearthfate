@@ -190,12 +190,17 @@ iconDropdown:SetPoint("TOPRIGHT", panel, "TOPRIGHT", -16, -100)
 iconDropdown:SetupMenu(function(_, root)
     for _, style in ipairs(ns.iconStyles) do
         root:CreateRadio(style.name,
-            function() return ns.db.iconStyle == style.key end,
+            function() return ns.db and ns.db.iconStyle == style.key end,
             function()
                 ns.db.iconStyle = style.key
                 ns.ApplyIcon()
             end)
     end
+end)
+
+-- The saved settings aren't ready when this file loads, so rebuild the menu whenever it's shown.
+iconDropdown:HookScript("OnShow", function(self)
+    self:GenerateMenu()
 end)
 
 local fadeCheck = CreateFrame("CheckButton", nil, panel, "UICheckButtonTemplate")
