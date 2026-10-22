@@ -1,0 +1,16 @@
+## Interface: 120105
+## Title: Hearthfate
+## Notes: One button that uses a random hearthstone toy from the ones you choose.
+## Version: 0.1.0
+## IconTexture: Interface\AddOns\Hearthfate\Icons\EmberDice
+## SavedVariables: HearthfateDB
+## Author: ContraZoom
+## X-License: MIT
+
+Core.lua
+Toys.lua
+Cloaks.lua
+Button.lua
+CloakBar.lua
+Menu.lua
+Options.lua
