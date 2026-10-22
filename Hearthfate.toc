@@ -6,6 +6,7 @@
 ## SavedVariables: HearthfateDB
 ## Author: ContraZoom
 ## X-Website: https://github.com/knnwo/Hearthfate
+## X-Curse-Project-ID: 1759878
 ## X-License: MIT
 
 Core.lua
