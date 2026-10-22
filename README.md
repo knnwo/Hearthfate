@@ -1,3 +1,5 @@
+![Hearthfate](screenshots/banner.png)
+
 # Hearthfate
 
 One button, one random hearthstone. Hearthfate sends you home with a random toy from the hearthstones you choose, with a cooldown display and quick shortcuts for the rest of your travel toys.

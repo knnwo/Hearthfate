@@ -5,6 +5,7 @@
 ## IconTexture: Interface\AddOns\Hearthfate\Icons\EmberDice
 ## SavedVariables: HearthfateDB
 ## Author: ContraZoom
+## X-Website: https://github.com/knnwo/Hearthfate
 ## X-License: MIT
 
 Core.lua
