@@ -1,0 +1,13 @@
+package-as: Hearthfate
+
+manual-changelog:
+  filename: CHANGELOG.md
+  markup-type: markdown
+
+ignore:
+  - screenshots
+  - README.md
+  - CHANGELOG.md
+  - .luarc.json
+  - .gitignore
+  - .github
