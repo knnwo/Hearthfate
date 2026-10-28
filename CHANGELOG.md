@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.0
+
+- Six new button icons: Fel dice, Fel swirl, Shadow dice, Shadow swirl, Ember compass and Ember flame.
+
 ## 1.0.0
 
 First release.

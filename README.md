@@ -17,7 +17,7 @@ One button, one random hearthstone. Hearthfate sends you home with a random toy 
   - Shift+right-click: Dalaran Hearthstone
 - **Teleport cloaks.** Ctrl+click opens a bar with the teleport cloaks you own (Cloak of Coordination, Wrap of Unity, Shroud of Cooperation). Your normal cloak can be put back for you after you teleport.
 - **See what you're missing.** The "See unavailable" view in the toy menu lists the hearthstone toys you don't own yet. Shift+click one to copy its Wowhead link.
-- **Make it yours.** Four button icons, resizable and movable, an option to fade the button when you're not hovering over it, and a pulse when your hearthstone is ready again.
+- **Make it yours.** Ten button icons, resizable and movable, an option to fade the button when you're not hovering over it, and a pulse when your hearthstone is ready again.
 
 ![The toy menu](screenshots/menu.png)
 

@@ -209,10 +209,16 @@ end)
 local ICON_PATH = "Interface\\AddOns\\Hearthfate\\Icons\\"
 
 ns.iconStyles = {
-    { key = "emberdice",   name = "Ember dice",   texture = ICON_PATH .. "EmberDice" },
-    { key = "emberswirl",  name = "Ember swirl",  texture = ICON_PATH .. "EmberSwirl" },
-    { key = "arcanedice",  name = "Arcane dice",  texture = ICON_PATH .. "ArcaneDice" },
-    { key = "arcaneswirl", name = "Arcane swirl", texture = ICON_PATH .. "ArcaneSwirl" },
+    { key = "emberdice",    name = "Ember dice",    texture = ICON_PATH .. "EmberDice" },
+    { key = "emberswirl",   name = "Ember swirl",   texture = ICON_PATH .. "EmberSwirl" },
+    { key = "embercompass", name = "Ember compass", texture = ICON_PATH .. "EmberCompass" },
+    { key = "emberflame",   name = "Ember flame",   texture = ICON_PATH .. "EmberFlame" },
+    { key = "arcanedice",   name = "Arcane dice",   texture = ICON_PATH .. "ArcaneDice" },
+    { key = "arcaneswirl",  name = "Arcane swirl",  texture = ICON_PATH .. "ArcaneSwirl" },
+    { key = "feldice",      name = "Fel dice",      texture = ICON_PATH .. "FelDice" },
+    { key = "felswirl",     name = "Fel swirl",     texture = ICON_PATH .. "FelSwirl" },
+    { key = "shadowdice",   name = "Shadow dice",   texture = ICON_PATH .. "ShadowDice" },
+    { key = "shadowswirl",  name = "Shadow swirl",  texture = ICON_PATH .. "ShadowSwirl" },
 }
 
 function ns.ApplyIcon()
