@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.0
+
+- A live cooldown window now appears when you use the Arcantina key, Garrison or Dalaran hearthstone while it's on cooldown. It counts down and closes by itself.
+- The "no teleport cloaks" message now points you to the guild vendor.
+
 ## 1.1.0
 
 - Six new button icons: Fel dice, Fel swirl, Shadow dice, Shadow swirl, Ember compass and Ember flame.

@@ -77,6 +77,71 @@ function ns.PickWeighted(list)
     return list[#list]
 end
 
+local COOLDOWN_POPUP = "HEARTHFATE_ON_COOLDOWN"
+local COOLDOWN_TEXT = "|cffffd100Hearthfate|r\n\n%s is on cooldown.\nReady in %s."
+local READY_TEXT = "|cffffd100Hearthfate|r\n\n%s is ready!"
+
+-- Redraws the popup's text once a second, using the toy's real remaining cooldown.
+local function UpdateCooldownPopup(dialog, toyID)
+    local label = dialog.Text or dialog.text
+    if not label then
+        return
+    end
+
+    local name = C_Item.GetItemNameByID(toyID) or "That toy"
+    local start, duration = C_Item.GetItemCooldown(toyID)
+    local remaining = (start and duration and duration > 0) and (start + duration - GetTime()) or 0
+
+    if remaining > 0 then
+        label:SetFormattedText(COOLDOWN_TEXT, name, SecondsToTime(remaining))
+    else
+        label:SetFormattedText(READY_TEXT, name)
+        if dialog.hearthfateTicker then
+            dialog.hearthfateTicker:Cancel()
+            dialog.hearthfateTicker = nil
+        end
+    end
+end
+
+StaticPopupDialogs[COOLDOWN_POPUP] = {
+    text = COOLDOWN_TEXT,
+    button1 = OKAY,
+    timeout = 5, -- closes by itself after 5 seconds (OK or Esc closes it sooner)
+    whileDead = true,
+    hideOnEscape = true,
+    preferredIndex = 3,
+    OnShow = function(self, toyID)
+        if self.hearthfateTicker then
+            self.hearthfateTicker:Cancel()
+        end
+        self.hearthfateTicker = C_Timer.NewTicker(1, function()
+            UpdateCooldownPopup(self, toyID)
+        end)
+    end,
+    OnHide = function(self)
+        if self.hearthfateTicker then
+            self.hearthfateTicker:Cancel()
+            self.hearthfateTicker = nil
+        end
+    end,
+}
+
+-- Opens a live cooldown window when a travel toy is on cooldown. The game stays silent
+-- for some toys, so without this nothing tells the player why the click did nothing.
+local function AlertIfOnCooldown(toyID)
+    local start, duration = C_Item.GetItemCooldown(toyID)
+    if start and duration and duration > 3 then -- ignore the short global cooldown
+        local remaining = start + duration - GetTime()
+        if remaining > 0 then
+            local name = C_Item.GetItemNameByID(toyID) or "That toy"
+            StaticPopup_Hide(COOLDOWN_POPUP) -- start fresh so the countdown restarts
+            StaticPopup_Show(COOLDOWN_POPUP, name, SecondsToTime(remaining), toyID)
+            return true
+        end
+    end
+    return false
+end
+
 -- Runs right before the secure action fires. Attributes can't change in combat,
 -- but hearthstones can't be used in combat anyway.
 button:SetScript("PreClick", function(self, mouseButton, down)
@@ -102,6 +167,8 @@ button:SetScript("PreClick", function(self, mouseButton, down)
         local toyID = shift and DALARAN_TOY_ID or ARCANTINA_TOY_ID
         if not PlayerHasToy(toyID) then
             ns.Print("you don't have the " .. (shift and "Dalaran Hearthstone" or "Personal Key to the Arcantina") .. " yet.")
+        else
+            AlertIfOnCooldown(toyID)
         end
         return
     end
@@ -109,6 +176,8 @@ button:SetScript("PreClick", function(self, mouseButton, down)
     if shift then
         if not PlayerHasToy(GARRISON_TOY_ID) then
             ns.Print("you don't have the Garrison Hearthstone yet.")
+        else
+            AlertIfOnCooldown(GARRISON_TOY_ID)
         end
         return
     end

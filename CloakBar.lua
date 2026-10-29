@@ -172,7 +172,7 @@ function ns.ToggleCloakBar()
     end
 
     if Rebuild() == 0 then
-        ns.Print("you don't have any teleport cloaks in your bags.")
+        ns.Print("you don't have any teleport cloaks in your bags. If you're in a guild, you can visit the guild vendor to buy one.")
         return
     end
 
