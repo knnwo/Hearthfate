@@ -364,7 +364,7 @@ local function Refresh()
 end
 
 selectAll = CreateFrame("Button", nil, frame, "UIPanelButtonTemplate")
-selectAll:SetSize(100, 22)
+selectAll:SetSize(90, 22)
 selectAll:SetPoint("BOTTOMLEFT", frame, "BOTTOMLEFT", 16, 34)
 selectAll:SetText("Select all")
 selectAll:SetScript("OnClick", function()
@@ -373,7 +373,7 @@ selectAll:SetScript("OnClick", function()
 end)
 
 selectNone = CreateFrame("Button", nil, frame, "UIPanelButtonTemplate")
-selectNone:SetSize(100, 22)
+selectNone:SetSize(90, 22)
 selectNone:SetPoint("LEFT", selectAll, "RIGHT", 8, 0)
 selectNone:SetText("Select none")
 selectNone:SetScript("OnClick", function()
@@ -395,6 +395,46 @@ viewButton:SetScript("OnClick", function()
     showingMissing = not showingMissing
     scrollBar:SetValue(0)
     Refresh()
+end)
+
+local optionsButton = CreateFrame("Button", nil, frame)
+optionsButton:SetSize(46, 46)
+optionsButton:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", -25, 10)
+
+optionsButton.icon = optionsButton:CreateTexture(nil, "ARTWORK")
+optionsButton.icon:SetAllPoints()
+optionsButton.icon:SetTexture("Interface\\Icons\\INV_Misc_Gear_01")
+optionsButton.icon:SetTexCoord(0.08, 0.92, 0.08, 0.92)
+
+optionsButton:SetHighlightTexture("Interface\\Buttons\\ButtonHilight-Square", "ADD")
+
+-- Small "pressed" shift so it feels like a button.
+optionsButton:SetScript("OnMouseDown", function(self)
+    self.icon:ClearAllPoints()
+    self.icon:SetPoint("TOPLEFT", 1, -1)
+    self.icon:SetPoint("BOTTOMRIGHT", 1, -1)
+end)
+optionsButton:SetScript("OnMouseUp", function(self)
+    self.icon:ClearAllPoints()
+    self.icon:SetAllPoints()
+end)
+
+optionsButton:SetScript("OnEnter", function(self)
+    GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+    GameTooltip:SetText("Options", 1, 1, 1)
+    GameTooltip:Show()
+end)
+optionsButton:SetScript("OnLeave", function()
+    GameTooltip:Hide()
+end)
+
+optionsButton:SetScript("OnClick", function()
+    if InCombatLockdown() then
+        ns.Print("can't open the options in combat.")
+        return
+    end
+    frame:Hide()
+    Settings.OpenToCategory(ns.settingsCategory:GetID())
 end)
 
 frame:SetScript("OnShow", function()
