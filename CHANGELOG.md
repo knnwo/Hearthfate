@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.1
+
+- The toy menu has a gear button in the corner that opens the addon options.
+
 ## 1.2.0
 
 - A live cooldown window now appears when you use the Arcantina key, Garrison or Dalaran hearthstone while it's on cooldown. It counts down and closes by itself.
